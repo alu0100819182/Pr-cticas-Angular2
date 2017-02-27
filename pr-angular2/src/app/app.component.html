@@ -1,5 +1,12 @@
+<!--Expresion-->
 <h1>{{title}}</h1>
 
+<!--Propiedad-->
 <p [hidden]="!visible">Adiós</p>
 
+<!--Evento-->
 <button (click)="decirAdios()">Decir adiós</button>
+
+<!--Binding-->
+<p>¿Cómo te llamas?  <input type="text" [(ngModel)]="quien"></p>
+<p>Hola {{quien}}</p>

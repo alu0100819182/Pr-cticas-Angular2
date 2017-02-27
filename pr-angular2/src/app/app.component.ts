@@ -5,10 +5,11 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
-title = 'Manual de Angular 2 de DesarrolloWeb.com';
-visible = false;
-decirAdios() {
-  this.visible = true;
-}
+  title = 'Manual de Angular 2 de DesarrolloWeb.com';
+  visible = false;
+  decirAdios() {
+    this.visible = true;
+    }
 }
