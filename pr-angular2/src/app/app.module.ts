@@ -5,11 +5,15 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { EjemploComponent } from './ejemplo/ejemplo.component';
+import { BotonComponent } from './boton/boton.component';
+import { PreguntasComponent } from './preguntas/preguntas.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    EjemploComponent
+    EjemploComponent,
+    BotonComponent,
+    PreguntasComponent
   ],
   imports: [
     BrowserModule,

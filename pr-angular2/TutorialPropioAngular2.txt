@@ -1,0 +1,46 @@
+ANGULAR 2 (CAPA DE PRESENTACIÓN)
+- Escrito en TypeScript, que es un superset ( lenguaje que compila a otro ) de javascript.
+- Angular CLI ( Interfaz de linea de comandos ) es una herramienta de NodeJS.
+	- npm install -g angular-cli
+	- ng new mi-nuevo-proyecto-angular2
+	- ng serve
+- Modelo : app.component.ts
+- Vista: app.component.html
+- Sintaxis para la vista
+	- Propiedades: Flujo de modelo a vista y [propiedad]
+	- Expresiones: Flujo de modelo a vista y {{expresion}}
+	- Binding: Flujo de modelo a vista y viceversa y [{ngBind}]
+		- Puedes crear en una etiqueta una propiedad y se actualizará directamente 
+		en cualquier sitio donde declaremos esa propiedad mediante una expresión.
+	- Evento: Flujo de vista a modelo  y (evento)
+- Se construye un árbol de componentes.
+- Directivas
+	- Componentes
+		- Template -> Vista en HTML
+		- Clase -> javascript
+		- Función decoradora -> Pegamento entre las dos anteriores
+			- Patron de diseño donde se le añade funcionalidad a una funcion
+			- Comienzan por @
+			- import { Component } from '@angular/core'; -> Nos trae la función
+			- Anotaciones
+				- moduleId
+				- selector : nombre de la etiqueta que coincide con el 
+				nombre del componente del HTML.
+				- templateUrl: nombre del archivo.html: código de la vista
+				- styleUrls: los CSS
+	- Directivas de atributos
+	- Directivas estructurales
+- Creación de un componente
+	- ng g component nombre-del-componente
+	- Crear HTML para usar el componente
+		<app-ejemplo></app-ejemplo>
+	- Importar el código del componente
+		import { NombreDelComponenteComponent } from './nombre-del-			componente'
+	- Declarar que vas a usarlo
+		directives: [NombreDelComponenteComponent]
+- ngClass: permite alterar las clases CSS  que tienen los elementos de la página.
+- ngFor: permite hacer repeticiones de elementos dentro de una página.
+	
+		
+
+	
