@@ -12,5 +12,5 @@ export class AppComponent {
   visible = false;
   decirAdios() {
     this.visible = true;
-    }
+  }
 }
