@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 
 export class PreguntasComponent implements OnInit {
 
-objPregunta = [
+preguntasObj = [
     {
       pregunta: "¿España ganará la Euro 2016?",
       si: 22,
