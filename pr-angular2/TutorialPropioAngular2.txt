@@ -35,7 +35,7 @@ ANGULAR 2 (CAPA DE PRESENTACIÓN)
 	- Crear HTML para usar el componente
 		<app-ejemplo></app-ejemplo>
 	- Importar el código del componente
-		import { NombreDelComponenteComponent } from './nombre-del-			componente'
+		import { NombreDelComponenteComponent } from './nombre-del-componente'
 	- Declarar que vas a usarlo
 		directives: [NombreDelComponenteComponent]
 - ngClass: permite alterar las clases CSS  que tienen los elementos de la página.
