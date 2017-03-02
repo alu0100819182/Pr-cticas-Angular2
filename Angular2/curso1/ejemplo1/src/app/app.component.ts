@@ -8,4 +8,13 @@ import { Component } from '@angular/core';
 
 export class AppComponent {
   name = 'Hola';
+
+  setName(name:string){
+    this.name = name;
+  }
+
+  setName2(name:string){
+  this.name = name;
+  }
+  
 }
