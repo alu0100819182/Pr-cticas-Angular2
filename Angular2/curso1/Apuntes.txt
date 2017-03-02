@@ -1,0 +1,145 @@
+- web SPA -> comunican con un servidor web API REST -> framework para implementar esas webs es Angular 2
+
+- Introduccion a Angular 2
+	- framework para desarrollo SPA
+	- extiende el HMTL con etiquetas propias
+	- Interfaz basado en componentes.
+	- Usar con TypeScript
+	- Inyeccion de dependencias
+	- Implementado desde cero
+	- No es compatible con Angular 1
+	- Soporte para Javascript ES5 y ES6 y TypeScript
+	- Se puede usar cualquier lenguaje que transpile a Javascript
+	- Funciones
+		- Inyeccion de dependencias
+		- Servicios
+		- Cliente http (API REST)
+		- Navegacion por la app (Router)
+		- Animaciones
+		- Internacionalización
+		- Soporte para test unitarios y e2e
+		- Librerias de componentes
+		- Renderizado en el servidor
+
+- TypeScript
+	- Añade tipos estáticos a Javascript ( variables con tipos como un string )
+	- El compilador genera código Javascript es5
+	- Orientado a objetos con clases
+	- Anotaciones
+	- Las clases se exportan
+	- Los tipos van despues del nombre -> private nombre:string;
+	- El constructor se llama constructor
+	- En los metodos no se marca el tipo que devuelve
+	- Es obligado poner this
+	- Es necesario importar aunque lo tengamos en la misma carpeta
+	- Las variables se declaran con let
+	- Usa arrow function
+	- El this siempre apunta al objeto.	
+	- Se puede cambiar el valor de la variable desde la propia arrow function.
+	- Se puede mediante un objeto llamar a métodos de sus hijos sin ser una instacia de eso
+	- No hace falta el uso de get y set
+	- ?: -> opcional ponerlo
+	- Se puede definir variables con varios tipos
+	- Permite compatibilidad de tipos estructurales
+
+- Herramientas de desarrollo
+	- Editor -> Visual Studio Code
+	- nodeJS : Plataforma para ejecutar aplicaciones JS fuera del navegador
+	- npm : Gestor de herramientas de desarrollos y librerias JS
+	- angular-cli está hecho con webpack
+		- Instalacion -> npm install -g angular-cli
+		- Generacion del proyecto -> ng new ejem1 , cd ejem1
+		- Ejecutar servidor web -> ng serve
+		- Generar el contenido para publicar en produccion -> ng build
+
+- Componentes
+	- Vista y Lógica
+	- app.module
+		- Módulos que tiene
+		- Módulos que importa
+		- Cual es el principal
+	- Placeholders
+		- {{}} Cambia el texto dentro de una etiqueta
+		- [] Sustituye el valor de un elemento html
+		- () Permite cambiar cosas en el modelo
+		- [()] Bidireccional -> atributo y componente sincronizados
+
+- Templates
+	- Permiten definir la vista en funcion de la informacion del componente
+	- No se puede incluir dos directivas en el mismo elemento
+		- Para solucionarlo se usa la etiqueta template que desaparece del DOM luego.
+	- Directivas
+		- *ngIf=" "
+		- *nfFor=" 
+	- Estilos
+		- De la forma tradicional o mediante styleUrls en Component
+			- Asociar la clase de un elemento a un atributo string
+			- Activar una clase concreta con un atributo boolean
+			- Asociar la clase de un elemento a un mapa
+			- Asociar un estilo concreto a un atributo
+	- Formularios
+		- Mediante binding
+	- # -> Me puedo referir a un elemento marcado con # en otro lado
+
+- Composición de componentes
+	- Se forma un árbol
+	- Con dos componentes (es lo mismo para más)
+		- Se pone las etiquetas html del componente hijo dentro del hmtl del padre
+		- En app.module.ts se da de alta todos los componentes.
+		- Configuracion de propiedades
+			- Padre -> Hijo
+				- @Input (Se pone en el hijo)
+			- Hijo -> Padre
+				- $event
+					- new EventEmitter
+					- .next
+				- @Output
+			- *Ejercicio 2
+	- any es como object pero puedo hacer con el lo que quiera
+
+- Cliente REST e inyección de dependecias
+	- Dispone de su propio cliente de API REST
+	- Es un objeto de la clase http
+	- Pasos	
+		- constructor(private http: Http) {}
+		- Dar de alta en el modulo el HttpModule y JsonpModule from @angular/http
+		- *Ejercicio 3
+
+- Servicios 
+	- Se crea una nueva clase y se le pone @Injectable
+	- Para usarlo se pone como parámetro del constructor
+	- En el modulo se pone dentro de providers, porque es un proveedor de servicios
+	- El servicio es singleton
+	- Servicio exclusivo para un componente -> providers dentro de su Component
+	- Peticiones http en un servicio
+		- Callbacks
+			- response
+			- error
+		- Promesas
+			- then
+			- catch
+		- Observables
+			- Se usa map
+	- Estado en los servicios http
+		- Stateless
+		- Statefull
+	- *Ejercicio 4
+
+- Aplicaciones multipágina: Router
+	- <router-outlet></router-outlet> -> cambia mientras vayamos navegando
+	- app-routing.ts dice que componente se muestra para cada url
+	- Importarlo dentro del module
+	- Se usan routerLink en vez de href y se le pasa un array con string.
+	- *Ejercicio 5
+	
+			
+
+
+		
+	
+
+		
+		
+	
+		
+	
