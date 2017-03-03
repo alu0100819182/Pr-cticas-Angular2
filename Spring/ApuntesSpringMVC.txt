@@ -1,0 +1,7 @@
+SPRING MVC
+	
+	- Hace toda su carga a través de servlets aunque se basa en MVC.
+				--- FrontController
+	- Dispatcher Servlet(1)	--- HTTP	
+				--- Java Server Page (JSP)
+	- (1) Es el servlet principal mediante el frontcontroller y se va a encargar de las peticiones.
