@@ -1,0 +1,225 @@
+SPRING
+
+- Introduccion
+
+	- Historia
+		- Rod Johnson
+		- Era necesario orientar Java para la web
+		- 4.2 en 2015
+		- Java EE
+
+	- ¿ Qué es ?
+		- Compañía SpringSource
+		- Framework
+		- Contenedor de Inversión de Control (IOC) usando Java Reflexión ( usar clases en 
+		tiempo de ejecución)
+		- Inyección de dependecias
+		- Objetos gestionados o beans
+
+	- Principio de inversión de dependencia (DIP)
+		- Los módulos de alto nivel no deben depender de los de bajo nivel
+		- Abstracciones sobre implementaciones
+		- Código desacoplado
+		- IOC es una aplicación de este principio
+
+	- IOC
+		- Estilo de programación donde un agente externo controla el flujo de aplicación
+		- Service Locator
+		- Events
+		- Delegates
+		- DI	
+
+	- Inyección de dependencias (DI)
+		- Patron de diseño
+		- Subtipo de IOC
+		- Maneras
+			- Constructor
+			- Propiedad (set)
+			- Servicio / interfaz
+
+	- Spring Core Container
+		- Es un IOC Container
+		- Gestiona ciclo de vida de los objetos (beans)
+		- Clases simples (POJOs)
+		
+	- Módulos
+		- Acceso de datos
+		- Web
+		- Core Container
+		- Test
+
+	- Ventajas
+		- Flexibilidad
+		- Código ordenado
+		- Uso de anotaciones
+		- Inyeccion de dependencias
+		- Estándares de programación
+
+- Inyección de dependecias
+
+	- Simple -> Pasarle el objeto a través del constructor o mediante el método set.
+	- Con interfaz -> de esa manera puede recibir cualquier tipo de objeto que implemente esa interfaz.
+		- Se crean tantas interfaces como dependencias de un elemento ( Messi : equipo, botas, medias, ...)
+	
+- IDE
+	- STS -> Spring Tools Suite
+
+- Hola Mundo
+	
+	- El módulo context agrega a core y beans.
+	- Uso de beans
+		- /java
+			- beans
+				- 1 -> Se crea una clase mundo
+			- spring
+				- 3 -> Se hace referencia a ese archivo XML
+					- Se usa ApplicationContext
+						- Solicita los beans
+					- Al objeto mundo se le asocia el objeto anterior -> .getBean("id")
+		- /resources
+			- 2 -> Archivo XML donde se registra 
+				- <bean id="mundo" class="rutadondeesta">
+					<property name="nombredelatributo" value"valorquequieras"></property>
+				  </bean>
+
+- Configuración con anotaciones
+
+	- Archivo de configuración que es una clase Java -> @Configuration
+		- Método que devuelve el objeto -> @Bean
+	- Se usa de nuevo el ApplicationContext
+		- Para registrar una nueva clase -> .register()
+	- En la clase Mundo
+		- @Value para indicar el valor
+
+- Inyección por constructor
+	
+	- <constructor-arg (type=" " ó index=" ") value=" "></constructor-arg>
+
+- Inyección de objetos
+	
+	- Queremos meter un objeto dentro de otro
+		- Creamos el bean del objeto a introducir
+		- En en bean del principal
+			- <property name="nombreDeLaVariableDentroDeLaClase" ref="IdDelBean"></property>
+
+- Beans Anidados
+
+	- En vez de usar ref, meto el bean dentro del bean donde quería usarlo
+
+- Referenciando Beans
+		
+	- <alias name="persona" alias="personaBean"> o name dentro de la etiqueta bean.
+
+- Colecciones
+
+	- Usando una lista de objetos por ejemplo
+		- Dentro de property : <list><ref bean="nombredelbean"></list>
+
+- Autowire
+
+	- Dentro de la etiqueta bean -> autowire="byName"
+					autowire="byType"
+					autowire="constructor"
+
+- Scopes
+
+	- Dentro de la etiqueta bean -> scope="singleton" -> misma instancia
+						- getBean \
+						  getBean - Bean
+ 						  getBean /
+				      	scope="prototype" -> diferentes instancias
+						- getBean - Bean
+						  getBean - Bean
+						  getBean - Bean	
+
+- Lazy loading
+
+	- Dentro de la etiqueta bean -> lazy-init="true" -> se invoca cuando se requiera no cuando se inicia
+								la aplicacion
+
+- Ciclo de vida de los Beans
+
+	- init-method="nombredelmetodo"
+	- destroy-method="nombredelmetodo"
+	- Para ver de forma general todos los beans
+		- En beans : init-method-default y destoy-method-default	
+
+- PostConstruct y PreDestroy
+
+	- Lo de antes pero con anotaciones
+		- @PostConstruct y @PreDestroy
+	- En el archivo de configuración <bean class="org.springframework.context.annotation
+								.CommonAnnotationBeanPostProccesor>
+
+- Ciclo de Vida de los Beans (Interfaces)
+
+	- Se implementa la interfaz InitializingBean y DisposableBean y 
+		ya no hace falta las anotaciones anteriores.
+
+- BeanPostProcessor
+
+	- Se implementa dicha interfaz que viene con dos métodos
+	
+- Anotaciones
+	
+	- @Value
+		- Se puede establecer un valor por defecto
+	- @Required : 
+		- Se pone en el método set y es para indicar que un atributo es necesario tener algún valor
+		  para él.
+		- Para ver que el fallo se produce por el required es necesario un BeanPostProcessor 
+		  para dicha anotación.
+	- @Autowired
+		- Puede ser establecida tanto en una propiedad como en un set.
+		- Permite reconocer de forma automática ese enlace que estableces.
+		- Por defecto es byType
+		- Cableado automático
+	- @Qualifier 
+		- Permite ayudar a Autowired a quien debe enlazarse
+		- Se establece en el archivo de configuracion el id mediante las etiquetas quialifier
+		- Se añade <context:annotation-config />
+
+- Estereotipos
+
+	- @Component
+		- Se le pone a la clase
+		- Es lo mismo que poner un bean dentro del archivo de configuración
+		- Se añade <context:component-scan base-package="nombredelaclase">
+
+	- @Repository : Capa de datos
+	- @Controller : Capa de controlador
+	- @Service : Capa de servicio
+	
+- MySQL en Spring
+	
+	- Patrón DAO (Data Access Object)
+	- src/main/java
+		- beans -> todas las clases (POJOs)
+		- dao -> interfaces de las clases que estan en beans más las clases implementando dichas interfaces
+			- En las clases creamos un objeto DataSource
+			- Creamos la sentencia
+			- Hacemos la conexion -> dataSource.getConnection(); (con Autowired no salta error)
+			- PreparedStatement
+			- La nombramos con @Repository
+		- service -> Interfaces y las clases 
+			- Creamos un objeto de DAO
+			- La nombramos con @Service
+	- src/main/resources
+		- configuración xml
+			- Creamos un bean con un id y la clase = org.springframework.
+								jdbc.datasource.DriverManagerDataSource
+	- Hay que añadir spring-jdbc y mysql-connector-java a las dependencias
+
+	
+	- Datos -> Capa servicio -> Capa de datos
+	
+	- Placeholders
+		- <context:property-placeholder location="classpath:nombre.properties" />
+		- En ese archivo mandamos los valores de los beans
+		- Para que esos valores se cambien value="${usuario}"
+
+		
+	
+	
+	
+					
