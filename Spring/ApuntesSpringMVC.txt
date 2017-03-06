@@ -5,3 +5,103 @@ SPRING MVC
 	- Dispatcher Servlet(1)	--- HTTP	
 				--- Java Server Page (JSP)
 	- (1) Es el servlet principal mediante el frontcontroller y se va a encargar de las peticiones.
+	- Directorios
+		- Archivos de configuración
+			- applicationContext.xml -> archivo de configuración general
+			- web.xml
+				- welcome-file-list -> archivo jsp que carga como principal
+		- Source Packages -> Archivos java
+			- Controladores (Puente entre el modelo de datos y la vista)
+				- Se devuelve un objeto de tipo ModelAndView
+					- .setViewName("home"); -> carga el archivo home.jsp
+		- Web Pages
+			- WEB-INF -> las vistas .jsp
+				- dispatcher-servlet.xml -> configuración del mismo y permite decirle al framework
+							    los recursos de navegación (cada página que creemos) 
+							    que vamos a usar.
+					- Primer bean es donde se usa el dispatcher
+					- Segundo bean con los recursos de navegación
+						- En los prop vamos poniendo las páginas
+							- <prop key=2index.htm">indexController</prop>
+					- Tercer bean informa al framework de los archivos jsp que renderizan las
+					  vistas
+					- Cuarto bean se hace por el controlador ( de esta manera habría bean 
+											por controlador )
+	- Pasos
+		- 1 Creamos controlador (se puede usar el mismo)
+		- 2 Modificamos dispatcher
+		- 2 Creamos la vista
+	- Proceso de parámetros vía GET
+		- Los parámetros que cogemos son por defecto string
+		- Le mandamos como parámetro al método que devuelve un ModelandView un objeto HttpServletRequest
+			- .getParameter("id")
+		- Para mostralo en la vista
+			- En el objeto ModelAndView	
+				- .addObject("id", id)
+			- En la vista
+				- <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core %> -> JSTL
+				- <c:out value=${id}" /> ó ${id}
+	- Implementación de DOM y Bootstrap
+		- resources dentro de WEB-INF
+			- css, js ó img <- Para llamarlo -> href="<c:url value="ruta" />"
+	- Formularios
+		- Creamos una clase pa ese formulario
+		- GET -> Devolvemos un objeto ModelAndView con los parámetros form , command y 
+										el objeto de la clase
+		- Creamos la vista donde añadimos <%@taglib prefix="form" uri="http://www.springframework.org/
+										tags/form" %>
+			- <form:form>
+				- <form:label path="nombre">Nombre</form:label>
+				- <form:input path="nombre />
+				- <form:button>Enviar</form:button>
+		- POST -> Método donde le pasamos un objeto de la clase modelo y ModelMap, y nos devuelve un string
+				con el nombre de la página donde vamos a mostrar las cosas
+			- addAttribute("nombre", X.getNombre());	
+	- Validacion de formularios
+		- <form:form method="post" commandName="nombredelobjecto">
+		- <form:select>
+		- @ModelAttribute("nombre") -> para crear una lista por ejemplo y asi acceder desde otro lado
+		- Validación
+			- Creamos un modelo para validar ese formulario e implementamos la interfaz Validator
+			- Dos métodos
+				- supports 
+					- return tuClase.class.isAssignableFrom(type)
+				- validate
+					- pones lo que quieres que se valide
+		- Creamos un método dentro del controlador para que ejecute la validacion
+	- Conexión a MySQL con JdbcTemplate
+		- Se crea un modelo java de tipo datasource
+			- tipo DriveManagerDataSource 
+			- .setDriverClassName("com.mysql.jdbc.Driver")
+			- Hay que añadir driver mysql dbc como libreria
+			- .setUrl("jdbc:mysql://nombredelservidor/nombredelabasededatos")
+			- .setUsername("nombredelusuario")
+			- .setPassword("contraseña")
+			- devolvemos ese objeto
+		- Se crea un objeto JdbcTemplate dentro del controlador
+			- En el constructor creamos un objeto del modelo anterior e instaciamos el objeto
+				jdbctemplate y le pasamos el objeto del modelo
+			- Hacemos en un string la consulta
+			- Creamos una lista de datos con jdbcTemplate.queryForList(consulta)
+			- Con el objeto ModelAndView hacemos .addObject(listadedatos, "datos")
+			- Ya podemos mostrar la base de datos en la vista recorriendo la lista
+				con <c:forEach items="${nombredelalista}" var="dato">
+				y dentro <c:out value="${dato.id}" />
+	- CRUD (crear, leer, actualizar y eliminar) con MySQL y JdbcTemplate
+		- Creamos el modelo java con los datos iguales que los atributos de la tabla de la base de datos
+		- Creamos un modelo para validar esos usuarios
+		- En el controlador creamos una instancia del modelo que valida y en su contructor iniciamos
+			tanto esa instancia como la del jbdc
+		- Para agregar al formulario hariamos un simple formulario 
+			- jdbcTemplate.update(consulta, parametros)
+			- devolvemos el objeto ModelAndView("redirect:/dondequeramosir)
+		- Para actualizar sería mandando los datos atraves del http
+			- Mediante un método
+				- Creamos el objeto
+				- Hacemos la consulta
+				- jdbcTemplate.query retorna los valores que queramos (copiar la estructura)
+		- Para borrar sería exactamente lo mismo
+		
+		
+		
+		
