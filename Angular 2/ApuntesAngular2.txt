@@ -1,8 +1,8 @@
 ANGULAR 2 (https://www.youtube.com/watch?v=YBrlRGO-iCI&index=1&list=PLEtcGQaT56ch63VgSUCOle6QNBqK8ewvd)
 
 - Estructura
-	- Arquitectura de diseÒo
-		- ¡rboles componentes web
+	- Arquitectura de dise√±o
+		- √Årboles componentes web
 			- Inyeccion de dependencias
 	- Componentes web
 		- Templates
@@ -14,6 +14,7 @@ ANGULAR 2 (https://www.youtube.com/watch?v=YBrlRGO-iCI&index=1&list=PLEtcGQaT56c
 		- ES6
 		- ES5
 - Herramientas
+	- Augury : herramienta para chrome y te permite entre otras cosas ver los componentes
 	- Nodejs + npm
 		- package.json
 			- angular/core : columna vertebral
