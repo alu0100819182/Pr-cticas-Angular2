@@ -1,0 +1,32 @@
+ANGULAR 2 (https://www.youtube.com/watch?v=YBrlRGO-iCI&index=1&list=PLEtcGQaT56ch63VgSUCOle6QNBqK8ewvd)
+
+- Estructura
+	- Arquitectura de diseño
+		- Árboles componentes web
+			- Inyeccion de dependencias
+	- Componentes web
+		- Templates
+		- Custom elements
+		- Shadow dom
+		- Html imports
+	- Lenguajes
+		- Typescript
+		- ES6
+		- ES5
+- Herramientas
+	- Nodejs + npm
+		- package.json
+			- angular/core : columna vertebral
+			- angular/common : definiciones de directivas
+			- angular/compiler : renderiza salida IU
+			- angular/platform-browser : interactua con el dom
+			- angular/platform-browser-dynamic : inicializa nuestras apps
+			- angular/http
+			- angular/router
+		- rxjs : eventos y asincronos (observables)
+		- tsconfig.json : transcompila un compilador fuente a fuente o lo que es lo mismo, compila un lenguajes 
+					de alto nivel en otro de alto nivel.
+		- 
+		
+
+	
